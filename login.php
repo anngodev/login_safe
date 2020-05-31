@@ -19,7 +19,26 @@
     <body>
         <div class="container">
         <h1>Login</h1>
-        
+        <p class="lead">Use this form to log in to your account</p>
+            
+            <form class="form-inline" action="<? php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                
+                <div class="form-group">
+                    <label for="login-username" class="sr-only">Username</label>
+                    <input type="text" class="form-control"  id="login-username" placeholder="username" name="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password" class="sr-only">Password</label>
+                    <input type="password" class="form-control"  id="login-password" placeholder="password" name="password">
+                </div>
+                    
+
+                    <button type="submit" class="btn btn-primary" name="login">Log In</button>
+                
+                
+                
+            </form>
     <?php 
             
             
