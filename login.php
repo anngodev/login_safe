@@ -1,4 +1,18 @@
 <?php
+    
+    if ( isset( $_POST["login"] ) ) {
+        
+        // Function to validate data
+        function validateFormData( $formData ) {
+            $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
+            return $formData;
+        }
+        
+        // Create variables
+        // Wrap data with function
+        $formUser = validateFormData( $_POST["username"] );
+        $formUser = validateFormData( $_POST["password"] );
+    }
 ?>
 
 
