@@ -14,10 +14,10 @@
         $formPass = validateFormData( $_POST["password"] );
         
         // Connect to database to make SQLquery
-        include("connection.php");
+        include("connections.php");
         
         // Create SQL query
-        $query = "SELECT username, email, password FROM users WHERE username='$formUser";
+        $query = "SELECT username, email, password FROM users WHERE username='$formUser'";
         
         // Store result
         $result = mysqli_query( $conn, $query );
@@ -54,7 +54,7 @@
         } else {// else statement for if(mysqli_num_rows($result))
             
             // Reused variable name because they are not going to be used at the same time
-            $loginError = "<div class='alert alert-danger'>No such user in database. Please try again.</div> <a class='close' data-dismissed='alert'>&times;</a></div>";
+            $loginError = "<div class='alert alert-danger'>No such user in database. Please try again.<a class='close' data-dismiss='alert'>&times;</a></div>";
          
         }
         // Close mysql connection
@@ -82,8 +82,9 @@
         <h1>Login</h1>
         <p class="lead">Use this form to log in to your account</p>
             
-            <? php echo $loginError; ?>
-            <form class="form-inline" action="<? php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+            <?php echo $loginError; ?>
+            
+            <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 
                 <div class="form-group">
                     <label for="login-username" class="sr-only">Username</label>
@@ -98,13 +99,8 @@
 
                     <button type="submit" class="btn btn-primary" name="login">Log In</button>
                 
-                
-                
             </form>
-    <?php 
-            
-            
-    ?>
+ 
           
         </div>
     
