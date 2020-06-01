@@ -11,7 +11,7 @@
         // Create variables
         // Wrap data with function
         $formUser = validateFormData( $_POST["username"] );
-        $formUser = validateFormData( $_POST["password"] );
+        $formPass = validateFormData( $_POST["password"] );
         
         // Connect to database to make SQLquery
         include("connection.php");
@@ -31,6 +31,24 @@
                 $email      =   $row["email"];
                 $hashedPass =   $row["password"];
                 
+            }
+            
+            // verify hashed password with typed password
+            if( password_verify( $formPass, $hashedPass) ) {
+                
+                // Correct login details
+                // Start session
+                session_start();
+                
+                // Store data in session variables
+                $_SESSION["loggedInUser"] = $user;
+                $_SESSION["loggedInEmail"] = $email;
+                
+                header("Location: profile.php");
+            } else {
+                
+                // Error message
+                $loginError = "<div class='alert alert-danger'>Wrong Username/Password combo. Try Again.</div>";
             }
         }
         
