@@ -50,8 +50,15 @@
                 // Error message
                 $loginError = "<div class='alert alert-danger'>Wrong Username/Password combo. Try Again.</div>";
             }
+          // If there are no results in database  
+        } else {// else statement for if(mysqli_num_rows($result))
+            
+            // Reused variable name because they are not going to be used at the same time
+            $loginError = "<div class='alert alert-danger'>No such user in database. Please try again.</div> <a class='close' data-dismissed='alert'>&times;</a></div>";
+         
         }
-        
+        // Close mysql connection
+        mysqli_close($conn);
     }
 ?>
 
@@ -75,6 +82,7 @@
         <h1>Login</h1>
         <p class="lead">Use this form to log in to your account</p>
             
+            <? php echo $loginError; ?>
             <form class="form-inline" action="<? php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 
                 <div class="form-group">
