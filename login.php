@@ -12,6 +12,28 @@
         // Wrap data with function
         $formUser = validateFormData( $_POST["username"] );
         $formUser = validateFormData( $_POST["password"] );
+        
+        // Connect to database to make SQLquery
+        include("connection.php");
+        
+        // Create SQL query
+        $query = "SELECT username, email, password FROM users WHERE username='$formUser";
+        
+        // Store result
+        $result = mysqli_query( $conn, $query );
+        
+        // Verify if result is returned; to check if data has already exist
+        if ( mysqli_num_rows($result) > 0 ) {
+            
+            // Store basic user data in variables
+            while( $row = mysqli_fetch_assoc($result) ) {
+                $user       =   $row["username"];
+                $email      =   $row["email"];
+                $hashedPass =   $row["password"];
+                
+            }
+        }
+        
     }
 ?>
 
